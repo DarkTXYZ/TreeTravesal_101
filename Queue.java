@@ -13,15 +13,20 @@ public class Queue {
     }
 
     public void enqueue(Node node) {
+
+        // วิธีการคือ จะเพิ่มข้อมูลตรงตำแหน่ง back จากนั้นจึง back++
+        // และ size++ เพราะมีจำนวนข้อมูลเพิ่ม
+
         if (!isFull()) {
-            if(isEmpty()){
+            if (isEmpty()) {
                 front = back = 0;
                 arr[back] = node;
+            } else {
+                arr[back] = node;
             }
-            else{
-                arr[back] = node; 
-            }
-            back = (back + 1) % capacity;
+            back = back + 1;
+            if (back >= capacity)
+                back = 0;
             size++;
 
         } else {
@@ -30,9 +35,15 @@ public class Queue {
     }
 
     public Node dequeue() {
+
+        // วิธีการคือ จะลบข้อมูลตรงตำแหน่ง front จากนั้นจึง front++
+        // และ size-- เพราะมีจำนวนข้อมูลลด
+
         if (!isEmpty()) {
             Node del = arr[front];
-            front = (front + 1) % capacity;
+            front = front + 1;
+            if (front >= capacity)
+                front = 0;
             size--;
             return del;
 
@@ -43,6 +54,9 @@ public class Queue {
     }
 
     public boolean isEmpty() {
+
+        // เช็คว่า queue ว่างหรือเปล่า โดยเช็คจาก size
+
         if (size == 0)
             return true;
         else
@@ -50,6 +64,9 @@ public class Queue {
     }
 
     public boolean isFull() {
+
+        // เช็คว่า queue เต็มหรือเปล่า โดยเช็คจาก size เทียบกับ capacity
+
         if (size == capacity)
             return true;
         else
@@ -62,15 +79,33 @@ public class Queue {
 
     public void printQueue() {
         if (!isEmpty()) {
-            int end = (back-1)%capacity;
-            if(end < 0)
-                end += capacity;
-            System.out.print("[Front] ");
-            for(int i = front ; i != end ; i = (i+1)%capacity){
-                System.out.print(arr[i].data + " ");
+            if (front == back) {
+
+                // ถ้า front == back นั่นคือทั้ง array นั่นเอง โดยเริ่ม print จาก ตำแหน่ง front ก่อน
+
+                System.out.print("[Front] ");
+                for (int i = front; i < capacity; ++i) {
+                    System.out.print(arr[i].data + " ");
+                }
+                for (int i = 0; i < back; ++i) {
+                    System.out.print(arr[i].data + " ");
+                }
+                System.out.println("[Back]");
+            } else {
+
+                // ถ้าไม่ ก็ไล่ array ตั้งแต่ front ไปเรื่อยๆ จนกว่าจะถึงตำแหน่ง back 
+                // โดยหากไล่ไปแล้วเกิน capacity ก็ให้ set กลับไปที่ตำแหน่งเริ่มต้น
+
+                System.out.print("[Front] ");
+                for (int i = front; i != back; ++i) {
+                    if (i == capacity) {
+                        i = -1;
+                        continue;
+                    }
+                    System.out.print(arr[i].data + " ");
+                }
+                System.out.println("[Back]");
             }
-            System.out.print(arr[end].data + " ");
-            System.out.println("[Back]");
         } else {
             System.out.println("Empty Queue!!!");
         }

@@ -1,19 +1,19 @@
-public class Node extends BTreePrinter {
+public class Node extends BTreePrinter { // สืบทอด class มาจาก BTreePrinter
 
     Node left;
     Node right;
     int data;
 
-    public Node(int data) {
+    public Node(int data) { // Constructor ของ Node
         left = right = null;
         this.data = data;
     }
 
-    public void printTree() {
+    public void printTree() { // เรียก function จาก BTreePrinter
         super.printTree(this);
     }
 
-    public void printBFT() {
+    public void printBFT() { // TreeTraversal แบบ BFT โดย code ตาม psedocode ในสไลด์
         Queue q = new Queue(50);
         q.enqueue(left);
         q.enqueue(right);
@@ -31,7 +31,7 @@ public class Node extends BTreePrinter {
         System.out.println("]");
     }
 
-    public void printDFT() { // PreOrder
+    public void printDFT() { // TreeTraversal แบบ DFT-Preorder โดย code ตาม psedocode ในสไลด์
         Stack s = new Stack(50);
         s.push(right);
         s.push(left);

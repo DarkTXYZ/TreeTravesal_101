@@ -6,7 +6,11 @@ public class App {
         tree.printDFT();
     }
 
-    public static Node constructTree1() {
+    public static Node constructTree1() { 
+
+        // สร้าง Tree1 ตามที่โจทย์กำหนด
+        // วิธีการคือ สร้าง node ขึ้นมาให้ครบ และใช้ left,right เชื่อมเข้าหากัน
+
         Node one = new Node(1);
         Node two = new Node(2);
         Node three = new Node(3);
@@ -30,6 +34,10 @@ public class App {
     }
 
     public static Node constructTree2() {
+
+        // สร้าง Tree2 ตามที่โจทย์กำหนด
+        // วิธีการคือ สร้าง node ขึ้นมาให้ครบ และใช้ left,right เชื่อมเข้าหากัน
+
         Node one = new Node(1);
         Node two = new Node(2);
         Node three = new Node(3);

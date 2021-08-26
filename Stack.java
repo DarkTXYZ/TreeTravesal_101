@@ -1,5 +1,5 @@
 public class Stack {
-    Node[] arr; // regular array
+    Node[] arr;
     int capacity;
     int size;
 
@@ -10,6 +10,9 @@ public class Stack {
     }
     
     public void push(Node node){
+
+        // ใช้หลักการเดียวกับ pushBack ของ Dynamic Array
+
         if (!isFull()){
             arr[size] = node;
             size++;
@@ -18,6 +21,9 @@ public class Stack {
         }
     }
     public Node pop(){
+
+        // ใช้หลักการเดียวกับ popBack ของ Dynamic Array
+
         if (!isEmpty()){
             size--;
             return arr[size];
@@ -26,6 +32,9 @@ public class Stack {
             return null;
         }
     }
+
+    // isFull , isEmpty ใช้หลักการเดียวกับของ Dynamic Array
+
     public boolean isFull(){
         if(size == capacity)
             return true;
